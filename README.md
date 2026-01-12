@@ -1,7 +1,7 @@
 # Auto Trading Bot
 
 ## Requirements
-- Java 17+
+- Java 21+
 - Node.js 18+
 - PostgreSQL 13+ (or compatible relational database)
 - Access to a public crypto market data API (Binance public REST endpoints, no API key required)
