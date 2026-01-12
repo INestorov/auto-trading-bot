@@ -214,8 +214,6 @@ SMA was chosen instead of EMA because:
 - it avoids additional weighting complexity
 - it makes debugging and reasoning about trades simpler
 
-For a take-home or interview project, SMA provides a clean and explainable trend signal without hidden behavior.
-
 ---
 
 ### Why RSI (Relative Strength Index)
@@ -263,7 +261,7 @@ It serves as a **baseline framework** that can later be extended with:
 - dynamic position sizing
 - additional indicators
 
-The emphasis was on correctness, explainability, and architectural clarity rather than performance tuning.
+The emphasis was on correctness and architectural clarity rather than performance tuning.
 
 ## Tradeoffs and Future Improvements
 
@@ -278,9 +276,8 @@ The emphasis was on correctness, explainability, and architectural clarity rathe
 Given the deadline, the focus was on:
 - correctness
 - clarity
-- explainability
 
-The result is a system where failures are understandable and traceable, which is valuable both in production debugging and technical interviews.
+The result is a system where failures are understandable and traceable, which is valuable both in production debugging.
 
 ---
 
@@ -291,5 +288,3 @@ All design choices were made deliberately to:
 - minimize hidden behavior
 - keep business logic explicit
 - favor correctness over abstraction
-
-This approach produces a system that is easy to reason about, extend, and explain.
