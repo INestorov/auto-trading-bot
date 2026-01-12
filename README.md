@@ -40,13 +40,7 @@
    cd frontend
    npm install
    ```
-
-2. Optional: configure backend API URL:
-   Create `frontend/.env`
-   ```bash
-   VITE_API_URL=http://localhost:8080
-   ```
-
+   
 ## Run Instructions
 
 ### Start Backend
