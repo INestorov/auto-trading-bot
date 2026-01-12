@@ -1,4 +1,4 @@
-package com.backend.repositories;
+package com.backend.repository;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

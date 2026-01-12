@@ -1,4 +1,4 @@
-package com.backend.logic;
+package com.backend.services;
 
 import com.backend.dto.BotMode;
 import org.springframework.scheduling.annotation.Scheduled;

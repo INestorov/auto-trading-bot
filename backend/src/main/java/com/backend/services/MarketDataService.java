@@ -1,4 +1,4 @@
-package com.backend.logic;
+package com.backend.services;
 
 import com.backend.models.Candles;
 import org.springframework.stereotype.Service;

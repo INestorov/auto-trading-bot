@@ -1,12 +1,12 @@
-package com.backend.logic;
+package com.backend.services;
 
 import com.backend.dto.BotMode;
 import com.backend.models.Candles;
 import com.backend.models.Signal;
-import com.backend.repositories.AccountRepository;
-import com.backend.repositories.PositionRepository;
-import com.backend.repositories.SnapshotRepository;
-import com.backend.repositories.TradeRepository;
+import com.backend.repository.AccountRepository;
+import com.backend.repository.PositionRepository;
+import com.backend.repository.SnapshotRepository;
+import com.backend.repository.TradeRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -160,9 +160,9 @@ public class BotEngine {
     }
 
     private Signal computeSignal(List<BigDecimal> closes, BigDecimal prevFast, BigDecimal prevSlow) {
-        BigDecimal fast = TradingStrategy.sma(closes.subList(closes.size() - FAST, closes.size()));
-        BigDecimal slow = TradingStrategy.sma(closes.subList(closes.size() - SLOW, closes.size()));
-        BigDecimal rsi  = TradingStrategy.rsi(closes, RSI_PERIOD);
+        BigDecimal fast = TradingStrategy.simpleMovingAverage(closes.subList(closes.size() - FAST, closes.size()));
+        BigDecimal slow = TradingStrategy.simpleMovingAverage(closes.subList(closes.size() - SLOW, closes.size()));
+        BigDecimal relativeStrengthIndex  = TradingStrategy.relativeStrengthIndex(closes, RSI_PERIOD);
 
         boolean crossUp = prevFast != null && prevSlow != null
                 && prevFast.compareTo(prevSlow) <= 0 && fast.compareTo(slow) > 0;
@@ -170,7 +170,7 @@ public class BotEngine {
         boolean crossDn = prevFast != null && prevSlow != null
                 && prevFast.compareTo(prevSlow) >= 0 && fast.compareTo(slow) < 0;
 
-        return new Signal(fast, slow, rsi, crossUp, crossDn);
+        return new Signal(fast, slow, relativeStrengthIndex, crossUp, crossDn);
     }
 
     private void applySignal(long accountId,
@@ -184,8 +184,8 @@ public class BotEngine {
         var pos = positions.getPosition(accountId, symbol);
         boolean hasPosition = pos.quantity().compareTo(BigDecimal.ZERO) > 0;
 
-        boolean buyOk = signal.crossUp() && signal.rsi().compareTo(new BigDecimal("70")) < 0;
-        boolean sellOk = signal.crossDn() || signal.rsi().compareTo(new BigDecimal("75")) > 0;
+        boolean buyOk = signal.crossUp() && signal.relativeStrengthIndex().compareTo(new BigDecimal("70")) < 0;
+        boolean sellOk = signal.crossDn() || signal.relativeStrengthIndex().compareTo(new BigDecimal("75")) > 0;
 
         if (!hasPosition && buyOk) {
             tryBuy(accountId, mode, symbol, price, ts, riskPct);

@@ -1,11 +1,11 @@
-package com.backend.controllers;
+package com.backend.controller;
 
 import com.backend.dto.SnapshotDTO;
 import com.backend.dto.TradeDTO;
 import com.backend.models.Candles;
-import com.backend.logic.MarketDataService;
-import com.backend.repositories.SnapshotRepository;
-import com.backend.repositories.TradeRepository;
+import com.backend.services.MarketDataService;
+import com.backend.repository.SnapshotRepository;
+import com.backend.repository.TradeRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

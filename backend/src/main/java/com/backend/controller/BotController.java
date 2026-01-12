@@ -1,12 +1,12 @@
-package com.backend.controllers;
+package com.backend.controller;
 
 import com.backend.dto.BotMode;
 import com.backend.dto.BotStatusDTO;
 import com.backend.dto.StartBotRequest;
-import com.backend.logic.BotEngine;
-import com.backend.logic.LiveBotRunner;
+import com.backend.services.BotEngine;
+import com.backend.services.LiveBotRunner;
 import com.backend.models.Candles;
-import com.backend.logic.MarketDataService;
+import com.backend.services.MarketDataService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 

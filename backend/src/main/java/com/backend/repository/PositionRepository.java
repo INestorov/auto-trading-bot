@@ -1,4 +1,4 @@
-package com.backend.repositories;
+package com.backend.repository;
 
 import com.backend.models.PositionRow;
 import org.springframework.jdbc.core.JdbcTemplate;
